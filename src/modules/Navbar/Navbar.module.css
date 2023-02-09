@@ -1,0 +1,27 @@
+.wrapper {
+  padding: 15px;
+  box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.683);
+}
+.list {
+  margin: 0;
+  padding: 0;
+  margin-left: 50px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.item {
+  padding: 8px;
+  font-size: 18px;
+}
+.link {
+  text-decoration: none;
+  color: rgb(23, 18, 18);
+}
+
+.link:global(.active) {
+  color: rgb(233, 86, 86);
+  font-weight: bold;
+}
