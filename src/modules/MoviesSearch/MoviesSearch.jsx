@@ -4,7 +4,7 @@ import css from './MoviesSearch.module.css';
 
 import MovieList from './MovieList/MovieList';
 import Loader from 'shared/components/Loader/Loader';
-import filmSearch from '../../shared/services/api';
+import {filmsSearch} from '../../shared/services/api';
 
 const MoviesSearch = () => {
   const [movies, setMovies] = useState([]);
@@ -14,7 +14,7 @@ const MoviesSearch = () => {
     const fetchMovies = async () => {
       try {
         setLoading({ loading: true });
-        const results = await filmSearch();
+        const results = await filmsSearch();
         console.log(results);
 
         setMovies(results);
