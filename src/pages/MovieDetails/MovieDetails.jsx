@@ -10,7 +10,7 @@ const MovieDetails = () => {
   const [loading, setLoading] = useState(false);
   const [genres, setGenres] = useState([]);
   const [date, setDate] = useState('');
-  
+  console.log(loading)
   const { movieId } = useParams();
 
   useEffect(() => {
