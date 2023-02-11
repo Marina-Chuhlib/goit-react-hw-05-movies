@@ -6,9 +6,9 @@ import {MovieSearch} from "../../shared/services/api"
 
 const MoviePage = () => {
   const [search, setSearch] = useState('');
-    const [movie, setMovie] = useState({});
+//     const [movie, setMovie] = useState({});
     
-  const [loading, setLoading] = useState(false);
+//   const [loading, setLoading] = useState(false);
 
     useEffect(() => {
 
@@ -18,7 +18,8 @@ const MoviePage = () => {
 
         const fetchMovie = async () => {
             try {
-             const results = await MovieSearch(search);
+                const results = await MovieSearch(search);
+                console.log(results)
             } catch (error){
                 
             }
@@ -28,7 +29,7 @@ const MoviePage = () => {
             
         }
 
-
+fetchMovie()
     },[search])
     
     
