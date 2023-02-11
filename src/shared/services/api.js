@@ -20,3 +20,10 @@ export const getMovieDetails = async movie_id => {
   const { data } = await instance.get(`/movie/${movie_id}?`);
   return data;
 };
+
+export const MovieSearch = async search => {
+  const { data } = await instance.get(
+    `/{search}/movie?&language=en-US&page=1&include_adult=false`
+  );
+  return data;
+};
