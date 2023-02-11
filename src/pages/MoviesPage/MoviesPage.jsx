@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 
 import MovieSearchForm from '../../modules/MovieSearchForm/MovieSearchForm';
 import {MovieSearch} from "../../shared/services/api"
-import css from './MoviePage.module.css';
+// import css from './MoviePage.module.css';
 
 const MoviePage = () => {
   const [search, setSearch] = useState('');
-  const [movie, setMovie] = useState({});
+    const [movie, setMovie] = useState({});
+    
   const [loading, setLoading] = useState(false);
 
     useEffect(() => {
