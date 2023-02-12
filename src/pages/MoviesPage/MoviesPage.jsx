@@ -1,40 +1,44 @@
-import { useState, useEffect } from 'react';
-
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import MovieSearchForm from '../../modules/MovieSearchForm/MovieSearchForm';
-import {MovieSearch} from "../../shared/services/api"
+import { MovieSearch } from '../../shared/services/api';
 // import css from './MoviePage.module.css';
 
 const MoviePage = () => {
-  const [search, setSearch] = useState('');
-//     const [movie, setMovie] = useState({});
+  // const [search, setSearch] = useState('');
+  // const [movies, setMovie] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
+  console.log(query);
+
+  useEffect(() => {
     
-//   const [loading, setLoading] = useState(false);
+    if (!query) {
+      return;
+    }
 
-    useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        // setLoading({ loading: true });
+        const results = await MovieSearch(query);
+        console.log(results);
+        // setMovie(results);
+       
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        // setLoading(false);
+      }
+    };
 
-        if (!search) {
-            return
-        }
+    fetchMovie();
+  }, [query]);
 
-        const fetchMovie = async () => {
-            try {
-                const results = await MovieSearch(search);
-                console.log(results)
-            } catch (error){
-                
-            }
-            finally {
-                
-            }
-            
-        }
-
-fetchMovie()
-    },[search])
-    
-    
-  const chanceSearch = ({ search }) => {
-    setSearch(search);
+  const chanceSearch = ({ query }) => {
+    setSearchParams(query);
+    console.log(query);
   };
 
   return <MovieSearchForm onSubmit={chanceSearch} />;

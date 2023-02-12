@@ -8,7 +8,7 @@ const instance = axios.create({
 });
 
 export const filmsSearch = async (page = 1) => {
-  const { data } = await instance.get('/trending/all/day?', {
+  const { data } = await instance.get('/trending/movie/day?', {
     params: {
       page,
     },
@@ -21,9 +21,13 @@ export const getMovieDetails = async movie_id => {
   return data;
 };
 
-export const MovieSearch = async search => {
-  const { data } = await instance.get(
-    `/{search}/movie?&language=en-US&page=1&include_adult=false`
-  );
-  return data;
+export const MovieSearch = async query => {
+  const { data } = await instance.get('/search/movie?', {
+    params: {
+      query,
+    },
+  });
+  // console.log(data.results);
+  return data.results;
 };
+// MovieSearch('Titanic');

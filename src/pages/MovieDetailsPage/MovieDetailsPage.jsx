@@ -7,7 +7,7 @@ import Loader from '../../shared/components/Loader/Loader';
 import css from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
   const [genres, setGenres] = useState([]);
   const [date, setDate] = useState('');
@@ -19,7 +19,6 @@ const MovieDetailsPage = () => {
         setLoading(true);
 
         const results = await getMovieDetails(movieId);
-        // console.log(results);
 
         setMovie(results);
 
@@ -39,36 +38,32 @@ const MovieDetailsPage = () => {
 
   const year = new Date(date).getFullYear();
 
-  const { poster_path, original_title, vote_average, overview } = movie;
-  
-
   return (
     <>
       {loading && <Loader />}
-     <div className={css.wrapper}>
-        <img
-          src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
-          alt={original_title ? original_title : 'picture not found'}
-          loading="lazy"
-          className={css.img}
-          width="300px"
-          height="450px"
-        />
-        <div className={css.info}>
-          <h2 className={css.title}>
-            {original_title ? original_title : 'Movie not found'}
-            <span>({year ? year : '-'})</span>
-          </h2>
-          <p>
-            User score:{' '}
-            {vote_average ? ((vote_average / 10) * 100).toFixed(0) : 0}%
-          </p>
-          <h3 className={css.topic}>Genres</h3>
-          <ul className={css.list}>{elements}</ul>
-          <h3 className={css.topic}>Overview</h3>
-          <p>{overview}</p>
+      {movie && (
+        <div className={css.wrapper}>
+          <img
+            src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+            alt={movie.original_title}
+            loading="lazy"
+            className={css.img}
+            width="300px"
+            height="450px"
+          />
+          <div className={css.info}>
+            <h2 className={css.title}>
+              {movie.original_title}
+              <span>({year})</span>
+            </h2>
+            <p>User score: {((movie.vote_average / 10) * 100).toFixed(0)}%</p>
+            <h3 className={css.topic}>Genres</h3>
+            <ul className={css.list}>{elements}</ul>
+            <h3 className={css.topic}>Overview</h3>
+            <p>{movie.overview}</p>
+          </div>
         </div>
-      </div> 
+      )}
     </>
   );
 };

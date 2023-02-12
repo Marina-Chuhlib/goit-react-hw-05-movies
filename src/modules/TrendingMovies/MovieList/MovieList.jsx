@@ -6,7 +6,7 @@ const MovieList = ({ movies }) => {
   const elements = movies.map(({ original_title, id, name }) => (
     <li key={id} className={css.item}>
       <Link className={css.link} to={`/movies/${id}`}>
-        {original_title ? original_title : name}
+        {original_title}
       </Link>
     </li>
   ));

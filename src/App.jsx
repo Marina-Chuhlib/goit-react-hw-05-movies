@@ -11,7 +11,7 @@ export const App = () => {
       <Navbar />
       <Routes>
         <Route path="/goit-react-hw-05-movies" element={<HomePage />} />
-        <Route path="/movies" element={<MoviePage />} />
+        <Route path="/movies" element={<MoviePage />}/>
         <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
       </Routes>
     </BrowserRouter>

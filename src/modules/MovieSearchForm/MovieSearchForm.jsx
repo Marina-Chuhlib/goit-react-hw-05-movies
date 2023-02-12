@@ -3,13 +3,14 @@ import { useState } from 'react';
 import css from './MovieSearchForm.module.css';
 
 const MovieSearchForm = ({ onSubmit }) => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const handleChange = e => setSearch(e.target.value);
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit(...search);
+    onSubmit(search);
+    console.log(search)
     setSearch('');
   };
 
