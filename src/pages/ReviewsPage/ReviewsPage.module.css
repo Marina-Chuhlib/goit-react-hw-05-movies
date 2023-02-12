@@ -1,0 +1,12 @@
+.wrapper {
+  padding: 15px;
+}
+
+.list {
+  padding: 0;
+  margin-left: 20px;
+}
+.item {
+  margin-bottom: 15px;
+  font-size: 12px;
+}

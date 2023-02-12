@@ -27,7 +27,15 @@ export const MovieSearch = async query => {
       query,
     },
   });
-  // console.log(data.results);
   return data.results;
 };
-// MovieSearch('Titanic');
+
+export const getMovieCast = async movie_id => {
+  const { data } = await instance.get(`/movie/${movie_id}/credits?`);
+  return data.cast;
+};
+
+export const getReviews = async movie_id => {
+  const { data } = await instance.get(`/movie/${movie_id}//reviews?`);
+  return data.results;
+};

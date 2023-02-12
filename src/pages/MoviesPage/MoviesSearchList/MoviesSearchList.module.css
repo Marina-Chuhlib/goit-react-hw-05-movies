@@ -1,0 +1,17 @@
+.list {
+  margin: 0;
+  margin-left: 50px;
+  margin-bottom: 50px;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  padding: 8px;
+  font-size: 18px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}

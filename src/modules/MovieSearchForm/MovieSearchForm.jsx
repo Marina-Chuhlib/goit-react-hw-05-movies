@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { GoSearch } from 'react-icons/go';
 
 import css from './MovieSearchForm.module.css';
 
@@ -10,7 +11,6 @@ const MovieSearchForm = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(search);
-    console.log(search)
     setSearch('');
   };
 
@@ -20,11 +20,12 @@ const MovieSearchForm = ({ onSubmit }) => {
         name="search"
         value={search}
         required
-        placeholder="Enter movie"
+        placeholder="Search movie"
         className={css.input}
         onChange={handleChange}
       />
       <button type="submit" className={css.button}>
+        <GoSearch className={ css.icon} />
         Search
       </button>
     </form>
