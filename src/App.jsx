@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Loader from 'shared/components/Loader/Loader';
 import Layout from 'modules/Layout/Layout';
 
-const Navbar = lazy(() => import('./modules/Navbar/Navbar'));
+// const Navbar = lazy(() => import('./modules/Navbar/Navbar'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const MoviePage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
 const MovieDetailsPage = lazy(() =>
@@ -18,19 +18,19 @@ export const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        {/* <Navbar /> */}
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
 
               <Route path="movies" element={<MoviePage />}>
-                <Route path=":movieId" element={<MovieDetailsPage />}>
+                <Route  path="movies/:movieId" element={<MovieDetailsPage />}>
                   <Route path="cast" element={<CastPage />} />
                   <Route path="reviews" element={<ReviewsPage />} />
                 </Route>
               </Route>
-              
+
             </Route>
 
             {/* <Route path="/" element={<HomePage />} />

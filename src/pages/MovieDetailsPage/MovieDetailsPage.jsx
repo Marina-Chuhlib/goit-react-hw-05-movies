@@ -37,6 +37,7 @@ const MovieDetailsPage = () => {
         setLoading(true);
 
         const results = await getMovieDetails(movieId);
+        console.log(results)
 
         setMovie(results);
 
