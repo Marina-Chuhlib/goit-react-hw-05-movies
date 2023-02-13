@@ -1,8 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link, Outlet} from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  Link,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 
 import { getMovieDetails } from '../../shared/services/api';
 import Loader from '../../shared/components/Loader/Loader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import css from './MovieDetailsPage.module.css';
 
@@ -11,11 +19,17 @@ import { MdKeyboardBackspace } from 'react-icons/md';
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [genres, setGenres] = useState([]);
   const [date, setDate] = useState('');
+
   const { movieId } = useParams();
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const from = location.state?.from || '/movies';
+  // console.log(location)
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -30,7 +44,8 @@ const MovieDetailsPage = () => {
 
         setDate(results.release_date);
       } catch ({ response }) {
-        console.log(response.data.message);
+        setError(response.data.message);
+        toast.error(`🦄 Sorry,${response.data.message}`);
       } finally {
         setLoading(false);
       }
@@ -38,7 +53,7 @@ const MovieDetailsPage = () => {
     fetchMovie();
   }, [movieId, setMovie, setLoading]);
 
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate(from);
 
   const elements = genres.map(({ name, id }) => <li key={id}>{name}</li>);
 
@@ -50,6 +65,7 @@ const MovieDetailsPage = () => {
         <MdKeyboardBackspace className={css.icon} /> Go back
       </button>
       {loading && <Loader />}
+      {error && <ToastContainer theme="colored" />}
       {movie && (
         <div className={css.wrapper}>
           <img
@@ -74,16 +90,27 @@ const MovieDetailsPage = () => {
         </div>
       )}
       <div className={css.wrapperLink}>
-        <button type='button' className={css.buttonLink}>  <Link to={`/movies/${movieId}/cast`} className={css.link}>
-        Cast
-      </Link></button>
-      <button type='button' className={css.buttonLink}><Link to={`/movies/${movieId}/reviews`} className={css.link}>
-        Reviews
-        </Link>
+        <button type="button" className={css.buttonLink}>
+          {' '}
+          <Link
+            state={{ from }}
+            to={`/movies/${movieId}/cast`}
+            className={css.link}
+          >
+            Cast
+          </Link>
         </button>
-        </div>
-     
-      <Outlet/>
+        <button type="button" className={css.buttonLink}>
+          <Link
+            state={{ from }}
+            to={`/movies/${movieId}/reviews`}
+            className={css.link}
+          >
+            Reviews
+          </Link>
+        </button>
+      </div>
+      <Outlet />
     </>
   );
 };

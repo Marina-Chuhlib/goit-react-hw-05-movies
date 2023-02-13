@@ -4,7 +4,7 @@ const items = [
   {
     id: nanoid(),
     text: 'Home',
-    link: '/goit-react-hw-05-movies',
+    link: '/',
   },
   {
     id: nanoid(),

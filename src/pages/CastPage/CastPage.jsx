@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCast } from 'shared/services/api';
 import Loader from 'shared/components/Loader/Loader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import css from './CastPage.module.css';
 
 const CastPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -14,11 +18,11 @@ const CastPage = () => {
       try {
         setLoading(true);
         const results = await getMovieCast(movieId);
-        console.log(results, 'result');
 
         setMovies(results);
       } catch ({ response }) {
-        console.log(response.data.message);
+        setError(response.data.message);
+        toast.error(`🦄 Sorry,${response.data.message}`);
       } finally {
         setLoading(false);
       }
@@ -41,12 +45,16 @@ const CastPage = () => {
     </li>
   ));
 
-  return (<>
-   {loading && <Loader />}
-    <div>
-      <ul className={css.list}>{element}</ul>
-    </div>
-  </>
+  return (
+    <>
+      {loading && <Loader />}
+      {error && <ToastContainer theme="colored" />}
+      {movies && (
+        <div>
+          <ul className={css.list}>{element}</ul>
+        </div>
+      )}
+    </>
   );
 };
 

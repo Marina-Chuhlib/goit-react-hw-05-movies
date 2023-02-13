@@ -4,7 +4,7 @@ import { GoSearch } from 'react-icons/go';
 import css from './MovieSearchForm.module.css';
 
 const MovieSearchForm = ({ onSubmit }) => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   const handleChange = e => setSearch(e.target.value);
 
@@ -25,7 +25,7 @@ const MovieSearchForm = ({ onSubmit }) => {
         onChange={handleChange}
       />
       <button type="submit" className={css.button}>
-        <GoSearch className={ css.icon} />
+        <GoSearch className={css.icon} />
         Search
       </button>
     </form>

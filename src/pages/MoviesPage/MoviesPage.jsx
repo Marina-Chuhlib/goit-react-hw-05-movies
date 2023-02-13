@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import MovieSearchForm from '../../modules/MovieSearchForm/MovieSearchForm';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { MovieSearch } from '../../shared/services/api';
 import Loader from '../../shared/components/Loader/Loader';
-import MoviesSearchList from './MoviesSearchList/MoviesSearchList';
+import MovieSearchForm from '../../modules/MovieSearchForm/MovieSearchForm';
+import MoviesList from 'modules/MoviesList/MoviesList';
 // import css from './MoviePage.module.css';
 
 const MoviePage = () => {
   const [movies, setMovie] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
@@ -24,8 +29,9 @@ const MoviePage = () => {
         const results = await MovieSearch(query);
 
         setMovie(results);
-      } catch (error) {
-        console.log(error.message);
+      } catch ({ response }) {
+        setError(response.data.message);
+        toast.error(`🦄 Sorry,${response.data.message}`);
       } finally {
         setLoading(false);
       }
@@ -42,7 +48,8 @@ const MoviePage = () => {
     <>
       <MovieSearchForm onSubmit={chanceSearch} />
       {loading && <Loader />}
-      {movies.length > 0 && <MoviesSearchList movies={movies} />}
+      {error && <ToastContainer theme="colored" />}
+      {movies && <MoviesList movies={movies} />}
     </>
   );
 };
