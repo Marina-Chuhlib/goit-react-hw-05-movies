@@ -6,7 +6,13 @@
   padding: 0;
   margin-left: 20px;
 }
+
 .item {
   margin-bottom: 15px;
   font-size: 12px;
+}
+
+h4 {
+  margin: 0;
+  margin-bottom: 5px;
 }

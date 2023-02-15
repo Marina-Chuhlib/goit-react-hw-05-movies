@@ -19,6 +19,7 @@ const ReviewsPage = () => {
       try {
         setLoading(true);
         const results = await getReviews(movieId);
+        // console.log(results);
         if (results.length === 0) {
           toast.info('🦄 Sorry, reviews not found');
         }
@@ -35,8 +36,9 @@ const ReviewsPage = () => {
     fetchCast();
   }, [movieId]);
 
-  const element = movies.map(({ content, id }) => (
+  const element = movies.map(({ content, id, author }) => (
     <li key={id} className={css.item}>
+      <h4>{author}</h4>
       <p>{content}</p>
     </li>
   ));

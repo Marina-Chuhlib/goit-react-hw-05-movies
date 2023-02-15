@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useState, useEffect } from 'react';
 import {
   useParams,
@@ -37,7 +39,6 @@ const MovieDetailsPage = () => {
         setLoading(true);
 
         const results = await getMovieDetails(movieId);
-        console.log(results)
 
         setMovie(results);
 
@@ -116,3 +117,8 @@ const MovieDetailsPage = () => {
   );
 };
 export default MovieDetailsPage;
+
+MovieDetailsPage.propTypes = {
+  onClick: PropTypes.func,
+  state: PropTypes.string,
+};

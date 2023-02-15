@@ -13,12 +13,11 @@ const Navbar = () => {
   ));
 
   return (
-      <div className={css.wrapper}>
-        <nav>
-          <ul className={css.list}>{elements}</ul>
-        </nav>
-      </div>
-  
+    <div className={css.wrapper}>
+      <nav>
+        <ul className={css.list}>{elements}</ul>
+      </nav>
+    </div>
   );
 };
 

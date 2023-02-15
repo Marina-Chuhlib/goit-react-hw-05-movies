@@ -8,7 +8,6 @@ const MoviesList = ({ movies }) => {
   const location = useLocation();
   // console.log(location, "MoviesList" )
 
- console.log( "MoviesList" )
   const elements = movies.map(({ title, id }) => (
     <li key={id} className={css.item}>
       <Link

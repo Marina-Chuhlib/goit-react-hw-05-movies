@@ -8,7 +8,6 @@ import { MovieSearch } from '../../shared/services/api';
 import Loader from '../../shared/components/Loader/Loader';
 import MovieSearchForm from '../../modules/MovieSearchForm/MovieSearchForm';
 import MoviesList from 'modules/MoviesList/MoviesList';
-// import css from './MoviePage.module.css';
 
 const MoviePage = () => {
   const [movies, setMovie] = useState([]);

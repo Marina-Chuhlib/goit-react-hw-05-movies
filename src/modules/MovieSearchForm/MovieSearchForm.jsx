@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 
@@ -33,3 +35,7 @@ const MovieSearchForm = ({ onSubmit }) => {
 };
 
 export default MovieSearchForm;
+
+MovieSearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
