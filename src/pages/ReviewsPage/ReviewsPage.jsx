@@ -1,4 +1,4 @@
-import { useState, useEffect,memo } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -56,4 +56,4 @@ const ReviewsPage = () => {
   );
 };
 
-export default memo(ReviewsPage);
+export default ReviewsPage;
