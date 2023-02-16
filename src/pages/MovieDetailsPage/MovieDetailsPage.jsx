@@ -59,7 +59,7 @@ const MovieDetailsPage = () => {
 
   const elements = genres.map(({ name, id }) => <li key={id}>{name}</li>);
 
-  const year = useMemo(()=>new Date(date).getFullYear(),[date]) ;
+  const year = useMemo(() => new Date(date).getFullYear(), [date]);
 
   return (
     <>
@@ -92,25 +92,21 @@ const MovieDetailsPage = () => {
         </div>
       )}
       <div className={css.wrapperLink}>
-       
-          {' '}
-          <Link
-            state={{ from }}
-            to={`/movies/${movieId}/cast`}
-            className={css.link}
-          >
-            Cast
-          </Link>
-    
-        
-          <Link
-            state={{ from }}
-            to={`/movies/${movieId}/reviews`}
-            className={css.link}
-          >
-            Reviews
-          </Link>
- 
+
+        <Link
+          state={{ from }}
+          to={`/movies/${movieId}/cast`}
+          className={css.link}
+        >
+          Cast
+        </Link>
+        <Link
+          state={{ from }}
+          to={`/movies/${movieId}/reviews`}
+          className={css.link}
+        >
+          Reviews
+        </Link>
       </div>
       <Outlet />
     </>

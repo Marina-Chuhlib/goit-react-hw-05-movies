@@ -19,7 +19,7 @@ const TrendingMovies = () => {
       try {
         setLoading(true);
         const results = await filmsSearch();
-        console.log(results);
+        // console.log(results);
 
         setMovies(results);
       } catch ({ response }) {

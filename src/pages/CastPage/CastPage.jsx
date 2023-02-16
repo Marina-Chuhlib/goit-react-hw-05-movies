@@ -19,6 +19,10 @@ const CastPage = () => {
         setLoading(true);
         const results = await getMovieCast(movieId);
 
+        if (results.length === 0) {
+          toast.info('🦄 Sorry, casts not found');
+        }
+
         setMovies(results);
       } catch ({ response }) {
         setError(response.data.message);
