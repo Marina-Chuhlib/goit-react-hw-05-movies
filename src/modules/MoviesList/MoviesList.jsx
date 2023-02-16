@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
 
@@ -22,12 +23,12 @@ const MoviesList = ({ movies }) => {
 
   return (
     <>
-      <ul className={css.list}>{elements}</ul>;
+      <ul className={css.list}>{elements}</ul>
     </>
   );
 };
 
-export default MoviesList;
+export default memo(MoviesList);
 
 MoviesList.defaultProps = {
   movies: [],

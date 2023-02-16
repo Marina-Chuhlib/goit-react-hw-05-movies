@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +19,7 @@ const TrendingMovies = () => {
       try {
         setLoading(true);
         const results = await filmsSearch();
-        // console.log(results);
+        console.log(results);
 
         setMovies(results);
       } catch ({ response }) {
