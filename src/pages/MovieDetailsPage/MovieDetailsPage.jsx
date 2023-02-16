@@ -92,7 +92,7 @@ const MovieDetailsPage = () => {
         </div>
       )}
       <div className={css.wrapperLink}>
-        <button type="button" className={css.buttonLink}>
+       
           {' '}
           <Link
             state={{ from }}
@@ -101,8 +101,8 @@ const MovieDetailsPage = () => {
           >
             Cast
           </Link>
-        </button>
-        <button type="button" className={css.buttonLink}>
+    
+        
           <Link
             state={{ from }}
             to={`/movies/${movieId}/reviews`}
@@ -110,7 +110,7 @@ const MovieDetailsPage = () => {
           >
             Reviews
           </Link>
-        </button>
+ 
       </div>
       <Outlet />
     </>
