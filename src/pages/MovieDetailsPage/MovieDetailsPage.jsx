@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   useParams,
   useNavigate,
@@ -59,7 +59,7 @@ const MovieDetailsPage = () => {
 
   const elements = genres.map(({ name, id }) => <li key={id}>{name}</li>);
 
-  const year = new Date(date).getFullYear();
+  const year = useMemo(()=>new Date(date).getFullYear(),[date]) ;
 
   return (
     <>
